@@ -11,9 +11,10 @@ import com.example.mytodolist.R
 import com.example.mytodolist.adapters.TasksAdapter
 import com.example.mytodolist.databinding.FragmentTaskBinding
 import com.example.mytodolist.ui.main.viewmodel.TaskViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_task.*
 
-
+@AndroidEntryPoint
 class TaskFragment : Fragment(R.layout.fragment_task){
 
     private val viewModel: TaskViewModel by viewModels()
