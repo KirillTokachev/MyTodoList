@@ -1,4 +1,4 @@
-package com.example.mytodolist.fragments
+package com.example.mytodolist.ui.main.viewmodel.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.mytodolist.R
-import kotlinx.android.synthetic.main.fragment_more_info_task.*
 
 
-class MoreInfoTask : Fragment() {
+
+class TaskInfo : Fragment() {
 
 
     override fun onCreateView(
@@ -21,12 +21,6 @@ class MoreInfoTask : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val text1 = arguments?.getString("Arg1")
-        title_task.text = text1
-
-        val text2 = arguments?.getString("Arg2")
-        textTaskTextView.text = text2
 
     }
 

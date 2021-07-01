@@ -7,7 +7,36 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.mytodolist.fragments.MainFragment"
+        android:name="com.example.mytodolist.ui.main.viewmodel.fragments.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_viewTask"
+            app:destination="@id/viewTask" />
+        <argument
+            android:name="DayArg"
+            app:argType="string"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewTask"
+        android:name="com.example.mytodolist.ui.main.viewmodel.fragments.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task" >
+        <action
+            android:id="@+id/action_viewTask_to_taskInfo"
+            app:destination="@id/taskInfo" />
+        <action
+            android:id="@+id/action_viewTask_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskInfo"
+        android:name="com.example.mytodolist.ui.main.viewmodel.fragments.TaskInfo"
+        android:label="fragment_info_task"
+        tools:layout="@layout/fragment_info_task" >
+        <action
+            android:id="@+id/action_taskInfo_to_viewTask"
+            app:destination="@id/viewTask" />
+    </fragment>
 </navigation>

@@ -7,10 +7,10 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mytodolist.R
-import com.example.mytodolist.fragments.MainFragment
+import com.example.mytodolist.ui.main.viewmodel.fragments.MainFragment
 
-class MainFragmentRecyclerViewAdapter(private val task: List<String>, mainFragment: MainFragment):
-    RecyclerView.Adapter<MainFragmentRecyclerViewAdapter.MainFragmentViewHolder>() {
+class MainAdapter(private val task: List<String>, mainFragment: MainFragment):
+    RecyclerView.Adapter<MainAdapter.MainFragmentViewHolder>() {
 
     class MainFragmentViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
@@ -29,7 +29,7 @@ class MainFragmentRecyclerViewAdapter(private val task: List<String>, mainFragme
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainFragmentViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_task, parent, false)
-        return MainFragmentRecyclerViewAdapter.MainFragmentViewHolder(itemView)
+        return MainAdapter.MainFragmentViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MainFragmentViewHolder, position: Int) {
