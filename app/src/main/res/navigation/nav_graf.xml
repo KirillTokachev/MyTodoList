@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graf"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.mytodolist.fragments.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_viewTaskFragment"
+            app:destination="@id/viewTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewTaskFragment"
+        android:name="com.example.mytodolist.fragments.ViewTaskADayFragment"
+        android:label="fragment_view_task"
+        tools:layout="@layout/fragment_view_task_a_day" >
+        <action
+            android:id="@+id/action_viewTaskFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="DayArg"
+            android:defaultValue="0"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_viewTaskFragment_to_moreInfoTask"
+            app:destination="@id/moreInfoTask" />
+    </fragment>
+    <fragment
+        android:id="@+id/moreInfoTask"
+        android:name="com.example.mytodolist.fragments.MoreInfoTask"
+        android:label="fragment_more_info_task"
+        tools:layout="@layout/fragment_more_info_task" >
+        <action
+            android:id="@+id/action_moreInfoTask_to_viewTaskFragment"
+            app:destination="@id/viewTaskFragment" />
+        <argument android:name="Arg1"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="Arg2"
+            app:argType="string"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>

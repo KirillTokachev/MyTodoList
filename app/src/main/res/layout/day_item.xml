@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp"
+    android:layout_margin="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <CheckBox
+            android:id="@+id/checkBoxDayTask"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="4dp"/>
+
+        <TextView
+            android:id="@+id/titleTaskTextView"
+            android:autoSizeTextType="uniform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title task"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/checkBoxDayTask"
+            android:maxLines="1"
+            android:ellipsize="end">
+        </TextView>
+
+
+        <TextView
+            android:layout_marginTop="2dp"
+            android:autoSizeMaxTextSize="34dp"
+            android:id="@+id/taskTextTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text task"
+            android:textStyle="italic"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/titleTaskTextView"
+            android:layout_toEndOf="@+id/checkBoxDayTask"
+            android:maxLines="2"
+            android:ellipsize="end">
+        </TextView>
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
