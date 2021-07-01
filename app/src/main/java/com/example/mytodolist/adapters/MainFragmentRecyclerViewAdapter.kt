@@ -1,12 +1,10 @@
 package com.example.mytodolist.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mytodolist.R
 import com.example.mytodolist.fragments.MainFragment
@@ -21,16 +19,16 @@ class MainFragmentRecyclerViewAdapter(private val task: List<String>, mainFragme
         var taskTextTextView: TextView? = null
 
         init {
-            checkBoxDayTask = itemView.findViewById(R.id.checkBoxDayTask)
-            titleTaskTextView = itemView.findViewById(R.id.titleTaskTextView)
-            taskTextTextView = itemView.findViewById(R.id.taskTextTextView)
+            checkBoxDayTask = itemView.findViewById(R.id.check_box_task)
+            titleTaskTextView = itemView.findViewById(R.id.title_task)
+            taskTextTextView = itemView.findViewById(R.id.task_text)
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainFragmentViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.day_item, parent, false)
+            .inflate(R.layout.item_task, parent, false)
         return MainFragmentRecyclerViewAdapter.MainFragmentViewHolder(itemView)
     }
 

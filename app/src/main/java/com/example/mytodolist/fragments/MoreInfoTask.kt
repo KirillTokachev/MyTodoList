@@ -16,14 +16,14 @@ class MoreInfoTask : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_more_info_task, container, false)
+        return inflater.inflate(R.layout.fragment_info_task, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val text1 = arguments?.getString("Arg1")
-        titleTaskTextView.text = text1
+        title_task.text = text1
 
         val text2 = arguments?.getString("Arg2")
         textTaskTextView.text = text2

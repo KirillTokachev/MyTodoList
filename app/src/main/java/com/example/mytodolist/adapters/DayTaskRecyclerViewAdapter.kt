@@ -17,19 +17,19 @@ class DayTaskRecyclerViewAdapter(private val task: List<String>,
     inner class DayTaskViewHolder(itemView: View): RecyclerView.ViewHolder(itemView),
     View.OnClickListener{
 
-       /* var checkBoxDayTask: CheckBox? = null
-        var titleTaskTextView: TextView? = null
-        var taskTextTextView: TextView? = null
+       /* var check_box_task: CheckBox? = null
+        var title_task: TextView? = null
+        var task_text: TextView? = null
 
         init {
-            checkBoxDayTask = itemView.findViewById(R.id.checkBoxDayTask)
-            titleTaskTextView = itemView.findViewById(R.id.titleTaskTextView)
-            taskTextTextView = itemView.findViewById(R.id.taskTextTextView)
+            check_box_task = itemView.findViewById(R.id.check_box_task)
+            title_task = itemView.findViewById(R.id.title_task)
+            task_text = itemView.findViewById(R.id.task_text)
         }*/
 
-        val checkBoxDayTask:CheckBox = itemView.findViewById(R.id.checkBoxDayTask)
-        val titleTaskTextView:TextView = itemView.findViewById(R.id.titleTaskTextView)
-        val taskTextTextView:TextView = itemView.findViewById(R.id.taskTextTextView)
+        val checkBoxDayTask:CheckBox = itemView.findViewById(R.id.check_box_task)
+        val titleTaskTextView:TextView = itemView.findViewById(R.id.title_task)
+        val taskTextTextView:TextView = itemView.findViewById(R.id.task_text)
 
         init {
             itemView.setOnClickListener(this)
@@ -53,7 +53,7 @@ class DayTaskRecyclerViewAdapter(private val task: List<String>,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayTaskViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.day_item, parent, false)
+            .inflate(R.layout.item_task, parent, false)
         return DayTaskViewHolder(itemView)
     }
 
