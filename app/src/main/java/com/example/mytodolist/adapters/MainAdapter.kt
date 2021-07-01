@@ -1,45 +1,57 @@
 package com.example.mytodolist.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mytodolist.R
-import com.example.mytodolist.ui.main.viewmodel.fragments.MainFragment
+import com.example.mytodolist.data.Task
+import com.example.mytodolist.databinding.ItemTaskBinding
 
-class MainAdapter(private val task: List<String>, mainFragment: MainFragment):
-    RecyclerView.Adapter<MainAdapter.MainFragmentViewHolder>() {
+class MainAdapter : ListAdapter<Task, MainAdapter.MainViewHolder>(DiffCallback()) {
 
-    class MainFragmentViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
-        var checkBoxDayTask: CheckBox? = null
-        var titleTaskTextView: TextView? = null
-        var taskTextTextView: TextView? = null
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.MainViewHolder {
 
-        init {
-            checkBoxDayTask = itemView.findViewById(R.id.check_box_task)
-            titleTaskTextView = itemView.findViewById(R.id.title_task)
-            taskTextTextView = itemView.findViewById(R.id.task_text)
+        val binding = ItemTaskBinding.inflate(LayoutInflater.from(parent.context),
+            parent, false)
+        return MainViewHolder(binding)
+
+    }
+
+    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+
+        val currentItem = getItem(position)
+        holder.bind(currentItem)
+
+    }
+
+    class MainViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root){
+
+        fun bind(task: Task){
+            binding.apply {
+                checkBoxTask.isChecked = task.completed
+
+                titleTask.text = task.name
+                titleTask.paint.isStrikeThruText = task.completed
+
+                taskText.text = task.info
+                taskText.paint.isStrikeThruText = task.completed
+
+                priorityLabel.isVisible = task.important
+            }
         }
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainFragmentViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_task, parent, false)
-        return MainAdapter.MainFragmentViewHolder(itemView)
-    }
+    class DiffCallback : DiffUtil.ItemCallback<Task>(){
+        override fun areItemsTheSame(oldItem: Task, newItem: Task) = oldItem.id == newItem.id
 
-    override fun onBindViewHolder(holder: MainFragmentViewHolder, position: Int) {
-        /*holder.itemView.setOnClickListener {
-            Log.d("SHOW", "${getItemId(position)}")
-        }*/
-    }
+        override fun areContentsTheSame(oldItem: Task, newItem: Task) = oldItem == newItem
 
-    override fun getItemCount(): Int {
-        return task.size
     }
 
 }
+
+

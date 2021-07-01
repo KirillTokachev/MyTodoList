@@ -19,7 +19,7 @@ android {
 
         javaCompileOptions.annotationProcessorOptions.arguments['dagger.hilt.disableModulesHaveInstallInCheck'] += 'true'
 
-        applicationId "com.codinginflow.mvvmtodo"
+        applicationId "com.example.mytodolist"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
