@@ -3,6 +3,7 @@ package com.example.mytodolist.ui.main.viewmodel.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -26,10 +27,15 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+
+
+
 @AndroidEntryPoint
 class TaskFragment : Fragment(R.layout.fragment_task), TasksAdapter.OnItemClickListener{
 
     private val viewModel: TaskViewModel by viewModels()
+
+    private lateinit var searchView: SearchView
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -102,6 +108,10 @@ class TaskFragment : Fragment(R.layout.fragment_task), TasksAdapter.OnItemClickL
                     is TaskViewModel.TasksEvent.ShowTaskConfirnedMessage -> {
                         Snackbar.make(requireView(), event.msg, Snackbar.LENGTH_LONG).show()
                     }
+                    TaskViewModel.TasksEvent.NavigateDeleteAllCompleted -> {
+                        val action = TaskFragmentDirections.actionGlobalDeleteAllCompletedDialogFragment()
+                        findNavController().navigate(action)
+                    }
                 }.exhaustive
             }
         }
@@ -122,7 +132,15 @@ class TaskFragment : Fragment(R.layout.fragment_task), TasksAdapter.OnItemClickL
         inflater.inflate(R.menu.menu_fragment_tasks, menu)
 
         val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
+        searchView = searchItem.actionView as SearchView
+
+        val pendingQuery = viewModel.searchQuery.value
+        if (pendingQuery != null && pendingQuery.isEmpty()) {
+            //...
+            searchItem.expandActionView()
+            searchView.setQuery(pendingQuery, false);
+
+        }
 
         searchView.onQueryTextChanged {
             viewModel.searchQuery.value = it
@@ -154,11 +172,16 @@ class TaskFragment : Fragment(R.layout.fragment_task), TasksAdapter.OnItemClickL
                true
             }
             R.id.action_delete_all_complete_tasks -> {
-
+                viewModel.onDeleteAllCompleted()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        searchView.setOnQueryTextListener(null)
     }
 
 }
