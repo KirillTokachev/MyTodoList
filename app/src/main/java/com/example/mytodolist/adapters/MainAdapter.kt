@@ -33,8 +33,8 @@ class MainAdapter : ListAdapter<Task, MainAdapter.MainViewHolder>(DiffCallback()
             binding.apply {
                 checkBoxTask.isChecked = task.completed
 
-                titleTask.text = task.name
-                titleTask.paint.isStrikeThruText = task.completed
+                nameTask.text = task.name
+                nameTask.paint.isStrikeThruText = task.completed
 
                 taskText.text = task.info
                 taskText.paint.isStrikeThruText = task.completed

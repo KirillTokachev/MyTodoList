@@ -32,6 +32,11 @@ abstract class TaskDataBase : RoomDatabase() {
                 dao.insert(Task("Сходить в магазин","купить: макароны,сыр,ветчину"))
                 dao.insert(Task("Учёба","почитать статьи про Dagger 2", important = true))
                 dao.insert(Task("Доделать проект","доделать красиыве переходы", important = true))
+                dao.insert(Task("Помыть посуду","Помыть без средства"))
+                dao.insert(Task("Побегать","В лесу", completed = true))
+                dao.insert(Task("Сходить в магазин","купить: макароны,сыр,ветчину"))
+                dao.insert(Task("Учёба","почитать статьи про Dagger 2", important = true))
+                dao.insert(Task("Доделать проект","доделать красиыве переходы", important = true))
             }
 
         }

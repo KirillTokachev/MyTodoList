@@ -8,36 +8,52 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.mytodolist.ui.main.viewmodel.fragments.MainFragment"
-        android:label="main_fragment"
-        tools:layout="@layout/main_fragment" >
+        android:label="Main"
+        tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_viewTask"
             app:destination="@id/viewTask" />
         <argument
             android:name="DayArg"
-            app:argType="string"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/viewTask"
         android:name="com.example.mytodolist.ui.main.viewmodel.fragments.TaskFragment"
-        android:label="fragment_task"
-        tools:layout="@layout/fragment_task"
-        app:startDestination="@id/action_viewTask_to_mainFragment">
+        android:label="Tasks"
+        app:startDestination="@id/action_viewTask_to_mainFragment"
+        tools:layout="@layout/fragment_task">
         <action
             android:id="@+id/action_viewTask_to_taskInfo"
-            app:destination="@id/taskInfo" />
+            app:destination="@id/addEditTask" />
         <action
             android:id="@+id/action_viewTask_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="task"
+            android:defaultValue="@null"
+            app:argType="com.example.mytodolist.data.Task"
+            app:nullable="true" />
+        <argument
+            android:name="Title"
+            app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/taskInfo"
-        android:name="com.example.mytodolist.ui.main.viewmodel.fragments.TaskInfo"
-        android:label="fragment_info_task"
-        tools:layout="@layout/fragment_info_task" >
+        android:id="@+id/addEditTask"
+        android:name="com.example.mytodolist.ui.main.viewmodel.fragments.AddEditTaskFragment"
+        android:label="Edit Task"
+        tools:layout="@layout/add_edit_task_fragment">
         <action
             android:id="@+id/action_taskInfo_to_viewTask"
             app:destination="@id/viewTask" />
+        <argument
+            android:name="task"
+            android:defaultValue="@null"
+            app:argType="com.example.mytodolist.data.Task"
+            app:nullable="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
 </navigation>

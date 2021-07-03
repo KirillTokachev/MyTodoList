@@ -1,7 +1,6 @@
     package com.example.mytodolist.ui.main.viewmodel.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -23,12 +22,31 @@ import kotlinx.android.synthetic.main.main_fragment.*
 
         private val viewModel: TaskViewModel by viewModels()
 
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+
+        }
+
+
+
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
+            val binding = MainFragmentBinding.bind(view)
+            val mainAdapter = MainAdapter()
+            binding.apply {
+                mainRecyclerView.apply {
+                    adapter = mainAdapter
+                    layoutManager = LinearLayoutManager(requireContext())
+                    setHasFixedSize(true)
+                }
+            }
+            viewModel.tasks.observe(viewLifecycleOwner){
+                mainAdapter.submitList(it)
+            }
 
             val bundle = Bundle()
-
             calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
 
                 var data: String = "$dayOfMonth.${month + 1}.$year"
@@ -38,26 +56,7 @@ import kotlinx.android.synthetic.main.main_fragment.*
 
             }
 
-
-            val binding = MainFragmentBinding.bind(view)
-
-            val mainAdapter = MainAdapter()
-
-            binding.apply {
-                mainRecyclerView.apply {
-                    adapter = mainAdapter
-                    layoutManager = LinearLayoutManager(requireContext())
-                    setHasFixedSize(true)
-                }
-            }
-
-            viewModel.tasks.observe(viewLifecycleOwner){
-                mainAdapter.submitList(it)
-            }
-
         }
 
+
     }
-
-
-

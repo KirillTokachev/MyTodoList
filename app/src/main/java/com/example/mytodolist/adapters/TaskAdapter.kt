@@ -1,6 +1,7 @@
 package com.example.mytodolist.adapters
 
 
+import android.text.BoringLayout
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -13,7 +14,7 @@ import com.example.mytodolist.databinding.ItemTaskBinding
 
 
 
-class TasksAdapter : ListAdapter<Task, TasksAdapter.TasksViewHolder>(DiffCallback()) {
+class TasksAdapter(private val listener: OnItemClickListener) : ListAdapter<Task, TasksAdapter.TasksViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TasksViewHolder {
 
@@ -30,14 +31,33 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.TasksViewHolder>(DiffCallbac
 
     }
 
-    class TasksViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class TasksViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root){
+
+        init {
+            binding.apply {
+                root.setOnClickListener {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val task = getItem(position)
+                        listener.onItemClickListener(task)
+                    }
+                }
+                checkBoxTask.setOnClickListener {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val task = getItem(position)
+                        listener.onCheckBoxClick(task, checkBoxTask.isChecked)
+                    }
+                }
+            }
+        }
 
         fun bind(task: Task){
             binding.apply {
                 checkBoxTask.isChecked = task.completed
 
-                titleTask.text = task.name
-                titleTask.paint.isStrikeThruText = task.completed
+                nameTask.text = task.name
+                nameTask.paint.isStrikeThruText = task.completed
 
                 taskText.text = task.info
                 taskText.paint.isStrikeThruText = task.completed
@@ -46,6 +66,11 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.TasksViewHolder>(DiffCallbac
             }
         }
 
+    }
+
+    interface OnItemClickListener{
+        fun onItemClickListener(task: Task)
+        fun onCheckBoxClick(task: Task, isChecked: Boolean)
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Task>(){

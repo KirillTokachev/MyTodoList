@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.viewmodel.fragments.TaskInfo">
+    tools:context=".ui.main.viewmodel.fragments.AddEditTaskFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,12 +11,13 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <TextView
-            android:text="Title"
+        <EditText
+            android:hint="Task name"
+            android:inputType="text"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:id="@+id/title_info_task"
+            android:id="@+id/edit_text_task_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
