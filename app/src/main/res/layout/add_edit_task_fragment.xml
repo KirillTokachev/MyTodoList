@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.viewmodel.fragments.AddEditTaskFragment">
+    tools:context=".fragments.AddEditTaskFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:padding="8dp">
 
         <EditText
-            android:hint="Task name"
+            android:hint="Добавить зачачу"
             android:inputType="text"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -25,20 +25,20 @@
             android:id="@+id/edit_text_task_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Task info"
+            android:hint="Дополнительная информация"
             android:inputType="text"/>
 
         <CheckBox
             android:id="@+id/checkbox_important"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Important task"/>
+            android:text="Приоритетная задача"/>
 
         <TextView
             android:id="@+id/date_created_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Date created:"/>
+            tools:text="Дата создания:"/>
 
 
 

@@ -75,8 +75,8 @@ class TaskViewModel @ViewModelInject constructor(
 
     fun onAddEditResult(result: Int) {
         when(result){
-            ADD_TASK_RESULT_OK -> showTaskConfirnedMessage("Task added")
-            EDIT_TASK_RESULT_OK -> showTaskConfirnedMessage("Task update")
+            ADD_TASK_RESULT_OK -> showTaskConfirnedMessage("Задача добавлена")
+            EDIT_TASK_RESULT_OK -> showTaskConfirnedMessage("Задача обнавлена")
         }
     }
 

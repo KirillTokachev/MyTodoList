@@ -44,7 +44,7 @@ class AddEditTaskViewModel @ViewModelInject constructor(
 
     fun onSave() {
         if (taskName.isBlank()) {
-            showInvalidInputMessage("Name cannot be empty")
+            showInvalidInputMessage("Название задачи не заданно")
             return
         }
 

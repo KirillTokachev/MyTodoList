@@ -1,4 +1,4 @@
-package com.example.mytodolist.ui.main.viewmodel.fragments
+package com.example.mytodolist.fragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -14,10 +14,10 @@ class DeleteAllCompletedDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         androidx.appcompat.app.AlertDialog.Builder(requireContext())
-            .setTitle("Confirn deletion")
-            .setMessage("Do you really want to delete all completed tasks?")
-            .setNegativeButton("Cancel", null)
-            .setPositiveButton("Yes") { _, _ ->
+            .setTitle("Подтвердите удаление")
+            .setMessage("Вы действительно хотите удалить все выполненные задачи?")
+            .setNegativeButton("Отмена", null)
+            .setPositiveButton("Да") { _, _ ->
                 viewModel.onConfirmC()
             }
             .create()

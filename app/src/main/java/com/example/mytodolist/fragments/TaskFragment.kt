@@ -1,9 +1,8 @@
-package com.example.mytodolist.ui.main.viewmodel.fragments
+package com.example.mytodolist.fragments
 
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -79,6 +78,7 @@ class TaskFragment : Fragment(R.layout.fragment_task), TasksAdapter.OnItemClickL
 
 
 
+        //...
         setFragmentResultListener("add_edit_request") { _, bundle ->
             var result = bundle.getInt("add_edit_result")
             viewModel.onAddEditResult(result)
@@ -88,21 +88,22 @@ class TaskFragment : Fragment(R.layout.fragment_task), TasksAdapter.OnItemClickL
             taskAdapter.submitList(it)
         }
 
+        //...
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.tasksEvent.collect { event ->
                 when (event) {
                     is TaskViewModel.TasksEvent.ShowDeleteTaskMessage -> {
-                        Snackbar.make(requireView(), "Task deleted", Snackbar.LENGTH_LONG)
-                            .setAction("CANCEL") {
+                        Snackbar.make(requireView(), "Задача удалена", Snackbar.LENGTH_LONG)
+                            .setAction("Отмена") {
                                 viewModel.onCancelDelete(event.task)
                             }.show()
                     }
                     is TaskViewModel.TasksEvent.NavigateAddTask -> {
-                        val action = TaskFragmentDirections.actionViewTaskToTaskInfo(null,"New task")
+                        val action = TaskFragmentDirections.actionViewTaskToTaskInfo(null,"Задача добавлена")
                         findNavController().navigate(action)
                     }
                     is TaskViewModel.TasksEvent.NavigateEditTask -> {
-                        val action = TaskFragmentDirections.actionViewTaskToTaskInfo(event.task, "Edit task")
+                        val action = TaskFragmentDirections.actionViewTaskToTaskInfo(event.task, "Задача отредактирована")
                         findNavController().navigate(action)
                     }
                     is TaskViewModel.TasksEvent.ShowTaskConfirnedMessage -> {
@@ -128,6 +129,7 @@ class TaskFragment : Fragment(R.layout.fragment_task), TasksAdapter.OnItemClickL
         viewModel.onCheckBoxChanged(task, isChecked)
     }
 
+    //...
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_fragment_tasks, menu)
 
@@ -153,6 +155,7 @@ class TaskFragment : Fragment(R.layout.fragment_task), TasksAdapter.OnItemClickL
 
     }
 
+    //...
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.action_sort_by_name -> {

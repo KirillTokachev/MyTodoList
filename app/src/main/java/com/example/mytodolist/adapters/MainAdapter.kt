@@ -1,6 +1,7 @@
 package com.example.mytodolist.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.core.view.isVisible
@@ -31,8 +32,7 @@ class MainAdapter : ListAdapter<Task, MainAdapter.MainViewHolder>(DiffCallback()
 
         fun bind(task: Task){
             binding.apply {
-                checkBoxTask.isChecked = task.completed
-
+                checkBoxTask.visibility = View.GONE
                 nameTask.text = task.name
                 nameTask.paint.isStrikeThruText = task.completed
 

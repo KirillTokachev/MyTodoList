@@ -1,9 +1,7 @@
-package com.example.mytodolist.ui.main.viewmodel.fragments
+package com.example.mytodolist.fragments
 
 import android.os.Bundle
 import android.view.View
-import android.widget.DatePicker
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
@@ -39,7 +37,7 @@ class AddEditTaskFragment : Fragment(R.layout.add_edit_task_fragment) {
             //...
             checkboxImportant.jumpDrawablesToCurrentState()
             dateCreatedTextView.isVisible = viewModel.task != null
-            dateCreatedTextView.text = "Created: ${viewModel.task?.createdDateFormatted}"
+            dateCreatedTextView.text = "Создано: ${viewModel.task?.createdDateFormatted}"
 
 
             editTextTaskName.addTextChangedListener {

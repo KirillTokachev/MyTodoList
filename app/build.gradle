@@ -53,6 +53,7 @@ android {
 dependencies {
     //Calendar
     implementation 'com.applandeo:material-calendar-view:1.9.0-rc03'
+    implementation 'ru.cleverpumpkin:crunchycalendar:2.2.0'
 
     // Default dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
