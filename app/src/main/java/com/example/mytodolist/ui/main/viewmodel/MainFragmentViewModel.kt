@@ -34,8 +34,5 @@ class MainFragmentViewModel @ViewModelInject constructor(
     val tasks = taskFlow.asLiveData()
 
 
-    /*fun onHideCompletedClick(hideCompleted: Boolean) = viewModelScope.launch {
-        preferencesManager.updateHideCompleted(hideCompleted)
-    }*/
 
 }

@@ -32,6 +32,7 @@ class MainAdapter : ListAdapter<Task, MainAdapter.MainViewHolder>(DiffCallback()
 
         fun bind(task: Task){
             binding.apply {
+
                 checkBoxTask.visibility = View.GONE
                 nameTask.text = task.name
                 nameTask.paint.isStrikeThruText = task.completed
